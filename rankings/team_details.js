@@ -2,16 +2,24 @@ import React,{Component} from 'react';
 import {View,Text,StyleSheet,Image,Dimensions} from 'react-native';
 import {createStackNavigator, createAppContainer} from 'react-navigation';
 import teams from '../assets/team_map';
-import team from '../rankings/teams';
+import Team from '../rankings/teams';
 
 
 const height=Dimensions.get('window').height;
 const width = Dimensions.get('window').width;
 
-class TeamDeatails extends Component {
-  static navigationOptions = {
-    title: 'Github Users',
-  }
+export default class TeamDeatails extends Component {
+  static navigationOptions = ({navigation}) => ({
+    headerStyle:{backgroundColor:teams[navigation.state.params.name].color},
+    headerTitle: 
+    <View 
+      style={[styles.container]} 
+    >
+      <Image source={teams[navigation.state.params.name].logo} style={{width:50,height:50}}/>
+      <Text style={styles.font}>{teams[navigation.state.params.name].team}</Text>
+    </View>      
+
+  })
   constructor(props){
     super(props)
     this.state = {
@@ -29,21 +37,15 @@ class TeamDeatails extends Component {
   }
   render(){
     return ( 
-      <View>
-        <View 
-          style={[styles.container,{backgroundColor:teams[this.state.name].color}]} 
-          >
-          <Image source={teams[this.state.name].logo} style={{width:65,height:65}}/>
-          <Text style={styles.font}>{teams[this.state.name].team}</Text>
-        </View>   
-      </View>
+      <Team name={this.state.name}/>
     )
   }
 }
 
   const styles = StyleSheet.create({
       container: {
-        height:height/3,
+        flex:1,
+        flexDirection:'row',
         justifyContent:'center',
         alignItems:'center',
       },
@@ -54,16 +56,7 @@ class TeamDeatails extends Component {
 
       }
   })
-
-  const stacknavigator = createStackNavigator({
-    Home:{
-      screen:team,
-      navigationOptions:{
-        headerTitle:<TeamDeatails/>
-      }
-    }
-  })
+          
 
 
 
-export default createAppContainer(stacknavigator) ;

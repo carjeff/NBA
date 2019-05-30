@@ -1,12 +1,25 @@
 import React,{Component} from 'react';
-import {View,Text} from 'react-native';
+import {View,Text,Dimensions} from 'react-native';
 import {createMaterialTopTabNavigator,createAppContainer} from 'react-navigation';
+import teamdata from '../teamdata/teamdata'
 
+const width=Dimensions.get('window').width;
+const height = Dimensions.get('window').height;
 class information extends Component{
+    constructor(props){
+        super(props)
+            this.state = {
+                name: this.props.screenProps.name,
+                datas: []
+            }
+    }
+
     render(){
         return(
             <View>
                 <Text>HHHHHHHH</Text>
+                <Text>{this.state.name}</Text>
+                <Text>{teamdata.resultSets[0].name}</Text>
             </View>
         )
     }
@@ -34,7 +47,7 @@ class lineup extends Component{
 }
 const topNavigator = createMaterialTopTabNavigator({
     information:{
-        screen:information,
+        screen: information,
         navigationOptions:{
             title:'information',
         }
@@ -48,9 +61,15 @@ const topNavigator = createMaterialTopTabNavigator({
     lineup:{
         screen:lineup,
         navigationOptions:{
-            title:'lineup'
+            title:'lineup',
         }
     }
+},{
+    swipeEnabled:true,
+    animationEnabled:true
 })
 
-export default createAppContainer(topNavigator);
+const Ap = createAppContainer(topNavigator);
+export default Team = (props) => {
+    return <Ap screenProps={{name: props.name}}/>
+} 
