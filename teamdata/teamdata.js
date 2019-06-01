@@ -1,5 +1,17 @@
 'use strict'
 export default{
+    max:[
+        118.1,
+        49.7,
+        29.4,
+        119.4,
+    ],
+    average:[
+        111.2,
+        45.2,
+        24.6,
+        111.2,
+    ],
     mil:{
     "resource": "teaminfocommon",
     "parameters": {
