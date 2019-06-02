@@ -11,7 +11,22 @@ class Header extends Component {
         this._onPress = this._onPress.bind(this)
     }
 
-    _onPress = () => this.props.navigation.navigate('Details',{name:this.state.data})
+    _onPress = () => {
+        if(this.state.data===''){
+            alert('Wrong team name')
+        }
+        else{
+            this.props.navigation.navigate('Details',{name:this.state.data})}            
+        }
+    change = (text) =>{
+        var name = text.toLowerCase();
+        var flag = name in judge;
+        if(flag){
+            this.setState({
+                data:judge[name]
+            })
+        }
+    }
 
         render (){
             return(
@@ -21,9 +36,9 @@ class Header extends Component {
                             <Icon name='search' type='material' color='#ccc'/>
                         </TouchableOpacity>
                     <TextInput
-                        onChangeText={(text)=>{this.setState({data:judge[text]})}}
+                        onChangeText={(text)=>{this.change(text)}}
                         onSubmitEditing={() => this._onPress}
-                        placeholder="What needs to be done?"
+                        placeholder="Which team you want to know?"
                         blurOnSubmit={false}
                         returnKeyType="done"
                         style={styles.input}/>

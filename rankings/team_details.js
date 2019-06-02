@@ -15,7 +15,7 @@ export default class TeamDeatails extends Component {
     <View 
       style={[styles.container]} 
     >
-      <Image source={teams[navigation.state.params.name].logo} style={{width:50,height:50}}/>
+      <Image source={teams[navigation.state.params.name].logo} style={{width:45,height:45}}/>
       <Text style={styles.font}>{teams[navigation.state.params.name].team}</Text>
     </View>      
 
@@ -50,8 +50,8 @@ export default class TeamDeatails extends Component {
         alignItems:'center',
       },
       font:{
-        fontSize:40,
-        fontStyle: 'italic',
+        fontSize:30,
+        fontStyle: 'normal',
         color:'white',
 
       }
